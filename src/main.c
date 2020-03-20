@@ -1,4 +1,5 @@
-MIT License
+/* 
+The MIT License (MIT)
 
 Copyright (c) 2020 Anna Brondin and Marcus Nordström
 
@@ -19,3 +20,35 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "StepCountingAlgo.h"
+
+int main(int argc, char *argv[])
+{
+    initAlgo(100);
+    char *line = NULL;
+    size_t len = 0;
+    size_t read;
+    FILE *fp = fopen("insert path to DataSet accelerometer.csv here", "r");
+    if (fp == NULL)
+    {
+        perror("Error while opening the file.\n");
+        exit(EXIT_FAILURE);
+    }
+    while ((read = getline(&line, &len, fp)) != -1) {
+        long time = strtol(strtok(line, ","), NULL, 10);
+        strtok(NULL, ",");
+        float x = strtof(strtok(NULL, ","), NULL);
+        float y = strtof(strtok(NULL, ","), NULL);
+        float z = strtof(strtok(NULL, ","), NULL);
+        //printf("%ld,%f,%f,%f\n",time,x,y,z);
+        processSample(time, x, y, z);
+    }
+    //printf("steps=%i\n", getSteps());
+    fclose(fp);
+    if (line)
+        free(line);
+}
