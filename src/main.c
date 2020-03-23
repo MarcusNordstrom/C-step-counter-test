@@ -41,13 +41,13 @@ int main(int argc, char *argv[])
     while ((read = getline(&line, &len, fp)) != -1) {
         long time = strtol(strtok(line, ","), NULL, 10);
         strtok(NULL, ",");
-        float x = strtof(strtok(NULL, ","), NULL);
-        float y = strtof(strtok(NULL, ","), NULL);
-        float z = strtof(strtok(NULL, ","), NULL);
+        long x = (long) (strtof(strtok(NULL, ","), NULL) * 100000000);
+        long y = (long) (strtof(strtok(NULL, ","), NULL) * 100000000);
+        long z = (long) (strtof(strtok(NULL, ","), NULL) * 100000000);
         //printf("%ld,%f,%f,%f\n",time,x,y,z);
         processSample(time, x, y, z);
     }
-    //printf("steps=%i\n", getSteps());
+    printf("steps=%i\n", getSteps());
     fclose(fp);
     if (line)
         free(line);
