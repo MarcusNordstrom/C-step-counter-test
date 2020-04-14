@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(stepCountingAlgoTest LANGUAGES C VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
-
-#Debug flags (sanitizers) for clang
-set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined") #-fsanitize=memory 
-set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined")
+#Debug flags (sanitizers) for clang -fsanitize=memory or -fsanitize=address
+set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -fno-omit-frame-pointer -fsanitize=memory -fsanitize=undefined")
+set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -Wall -fno-omit-frame-pointer -fsanitize=memory -fsanitize=undefined")
 
 #Debug flags for gcc
 #set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -pg")

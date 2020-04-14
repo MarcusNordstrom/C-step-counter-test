@@ -24,20 +24,22 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "StepCountingAlgo.h"
-
+#define PATH "/home/mackan240/Documents/Step-counting-algo-test/DataSet/optimisation/data/_Patient_2/accelerometer.csv"
 int main(int argc, char *argv[])
 {
-    initAlgo(100);
+    initAlgo();
     char *line = NULL;
     size_t len = 0;
     size_t read;
-    FILE *fp = fopen("insert path to DataSet accelerometer.csv here", "r");
+    FILE *fp = fopen(PATH, "r");
     if (fp == NULL)
     {
         perror("Error while opening the file.\n");
         exit(EXIT_FAILURE);
     }
+    clock_t startTime = clock();
     while ((read = getline(&line, &len, fp)) != -1) {
         long time = strtol(strtok(line, ","), NULL, 10);
         strtok(NULL, ",");
@@ -47,7 +49,8 @@ int main(int argc, char *argv[])
         //printf("%ld,%f,%f,%f\n",time,x,y,z);
         processSample(time, x, y, z);
     }
-    printf("steps=%i\n", getSteps());
+    clock_t endTime = clock();
+    printf("steps=%i\nt=%fs\n", getSteps(), ((float)(endTime - startTime))/10000000);
     fclose(fp);
     if (line)
         free(line);
