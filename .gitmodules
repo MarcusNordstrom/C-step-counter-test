@@ -1,6 +1,6 @@
-[submodule "Step-counting-algo"]
-	path = Step-counting-algo
-	url = https://github.com/MarcusNordstrom/Step-counting-algo.git
 [submodule "DataSet"]
 	path = DataSet
 	url = https://github.com/Oxford-step-counter/DataSet.git
+[submodule "C-Step-Counter"]
+	path = C-Step-Counter
+	url = https://github.com/MarcusNordstrom/C-Step-Counter.git

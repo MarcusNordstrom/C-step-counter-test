@@ -26,7 +26,7 @@ SOFTWARE.
 #include <string.h>
 #include <time.h>
 #include "StepCountingAlgo.h"
-#define PATH "/home/mackan240/Documents/Step-counting-algo-test/DataSet/optimisation/data/_Patient_2/accelerometer.csv"
+#define PATH "INSERT PATH HERE"
 int main(int argc, char *argv[])
 {
     initAlgo();
